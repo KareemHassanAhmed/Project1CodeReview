@@ -7,7 +7,8 @@ import ahmed.services.ManagerServiceImp;
 import io.javalin.Javalin;
 
 public class Driver {
-    public static ManagerService managerService = new ManagerServiceImp(new ManagerDAOPostgres());
+
+//public static ManagerService managerService = new ManagerServiceImp(new ManagerDAOPostgres());
 
 
     public static void main(String[] args) {

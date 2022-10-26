@@ -24,12 +24,12 @@ public class ManagerController
 
         {
             Manager manager = gson.fromJson(body, Manager.class);
-            Manager newman = mserv.createManager(manager);
+//            Manager newman = mserv.createManager(manager);
 //            System.out.println(manager);
             if(manager != null) {
-//               Manager returned = App.managerService.createManager(manager);
+               Manager returned = mserv.createManager(manager);
 
-                ctx.result(gson.toJson(newman));
+                ctx.result(gson.toJson(returned));
                 ctx.status(200);
             }
             else

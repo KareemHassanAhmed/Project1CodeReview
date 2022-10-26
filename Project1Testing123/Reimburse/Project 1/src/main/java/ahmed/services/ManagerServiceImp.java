@@ -1,20 +1,24 @@
 package ahmed.services;
 
+import ahmed.repositories.EmployeeDAO;
+import ahmed.repositories.EmployeeDAOPostgres;
 import ahmed.repositories.ManagerDAO;
 import ahmed.entities.Manager;
+import ahmed.repositories.ManagerDAOPostgres;
 
 import javax.inject.Inject;
 import java.util.List;
 
 public class ManagerServiceImp implements ManagerService {
+    private static ManagerService mserv = null;
 
     @Inject
 //    private ManagerDAO mdao;
 
-    private static ManagerDAO mdao;
-    public ManagerServiceImp(ManagerDAO mdao) { ManagerServiceImp.mdao = mdao; }
+//    private static ManagerDAO mdao;
+    private static ManagerDAO mdao = ManagerDAOPostgres.getMdao();
 
-    private static ManagerService mserv;
+//    private static ManagerService mserv;
 
     private ManagerServiceImp() {
         super();

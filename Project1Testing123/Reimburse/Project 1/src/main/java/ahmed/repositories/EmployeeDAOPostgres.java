@@ -137,7 +137,7 @@ public class EmployeeDAOPostgres implements EmployeeDAO
     public boolean deleteEmployee(Employee employee) {
         try(Connection conn = ConnectionFactory.getConnection())
         {
-            String sql = "DELETE FROM project1_db.EMPLOYEE WHERE eid = ?";
+            String sql = "DELETE FROM EMPLOYEE WHERE eid = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, employee.getEid());
 

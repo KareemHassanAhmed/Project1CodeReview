@@ -7,19 +7,20 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManagerDAOPostgres implements ManagerDAO {
-//    private static ManagerDAO mdao;
-//    public ManagerDAOImp(ManagerDAO mdao) { this.mdao = mdao; }
+public class ManagerDAOPostgres implements ManagerDAO
+{
+    private static ManagerDAO mdao;
+//    public ManagerDAOPostgres(ManagerDAO mdao) { this.mdao = mdao; }
 
- //   private ManagerDAOImp() {super();}
+    private ManagerDAOPostgres() {super();}
 
-//    public static ManagerDAO getMdao()
-//    {
-//        if (mdao == null)
-//            mdao = new ManagerDAOImp();
-//
-//        return mdao;
-//    }
+    public static ManagerDAO getMdao()
+    {
+        if (mdao == null)
+            mdao = new ManagerDAOPostgres();
+
+        return mdao;
+    }
 
 
     @Override
@@ -27,7 +28,7 @@ public class ManagerDAOPostgres implements ManagerDAO {
     {
         System.out.println(manager);
         try(Connection conn = ConnectionFactory.getConnection()){
-            String sql = "insert into managers values(default,?,?,?,?)";
+            String sql = "insert into MANAGERS values(default,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
       //      ps.setInt(1, 0);
             ps.setString(1, manager.getEmail());
@@ -54,7 +55,7 @@ public class ManagerDAOPostgres implements ManagerDAO {
     {
         try(Connection conn = ConnectionFactory.getConnection())
         {
-            String sql = "SELECT * FROM managers WHERE mgid = ?";
+            String sql = "SELECT * FROM MANAGERS WHERE mgid = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, mgid);
 
@@ -81,7 +82,7 @@ public class ManagerDAOPostgres implements ManagerDAO {
     {
         try(Connection conn = ConnectionFactory.getConnection())
         {
-            String sql = "SELECT * FROM managers";
+            String sql = "SELECT * FROM MANAGERS";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();
@@ -111,7 +112,7 @@ public class ManagerDAOPostgres implements ManagerDAO {
     {
         try(Connection conn = ConnectionFactory.getConnection())
         {
-            String sql = "UPDATE managers SET email=?,password=?,name=?,image_url=? WHERE mgid = ?";
+            String sql = "UPDATE MANAGERS SET email=?,password=?,name=?,image_url=? WHERE mgid = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ps.setString(1, manager.getEmail());
@@ -137,7 +138,7 @@ public class ManagerDAOPostgres implements ManagerDAO {
     {
         try(Connection conn = ConnectionFactory.getConnection())
         {
-            String sql = "DELETE FROM managers WHERE mgid = ?";
+            String sql = "DELETE FROM MANAGERS WHERE mgid = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, manager.getMgid());
 

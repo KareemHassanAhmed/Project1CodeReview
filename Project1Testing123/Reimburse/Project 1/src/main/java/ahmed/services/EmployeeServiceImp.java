@@ -2,6 +2,7 @@ package ahmed.services;
 
 import ahmed.repositories.EmployeeDAO;
 import ahmed.entities.Employee;
+import ahmed.repositories.EmployeeDAOPostgres;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -9,12 +10,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class EmployeeServiceImp implements EmployeeService {
-
     private static EmployeeService eserv = null;
 
     @Inject
-    private EmployeeDAO edao;
-//	private static EmployeeDAO edao = EmployeeDAOImp.getEdao();
+//    private EmployeeDAO edao;
+	private static EmployeeDAO edao = EmployeeDAOPostgres.getEdao();
 
     private EmployeeServiceImp() {
         super();
