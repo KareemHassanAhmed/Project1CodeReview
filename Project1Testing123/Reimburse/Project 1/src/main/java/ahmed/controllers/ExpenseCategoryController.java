@@ -57,7 +57,7 @@ public class ExpenseCategoryController {
     public static Handler getAllExpenseCategories = (ctx) -> {
         String title = ctx.queryParam("title");
 
-        List<ExpenseCategory> expenseCategories = new ArrayList<ExpenseCategory>();
+        List<ExpenseCategory> expenseCategories = new ArrayList<>();
 
         if(title != null)
         {

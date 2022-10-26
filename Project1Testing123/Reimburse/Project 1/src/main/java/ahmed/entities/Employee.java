@@ -9,7 +9,6 @@ public class Employee {
     private String image_url;
     private int mgid;
 
-
     public Employee() {
         super();
     }

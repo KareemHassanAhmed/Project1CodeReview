@@ -1,8 +1,9 @@
 package ahmed.controllers;
 
-import ahmed.driver.Driver;
-import com.google.gson.Gson;
 import ahmed.entities.Manager;
+import ahmed.services.ManagerService;
+import ahmed.services.ManagerServiceImp;
+import com.google.gson.Gson;
 import io.javalin.http.Handler;
 
 import java.util.ArrayList;
@@ -10,21 +11,21 @@ import java.util.List;
 
 public class ManagerController
 {
-//    private static ManagerService App.managerService = ManagerServiceImp.;
-//    private static Gson gson = new Gson();
+    private static ManagerService mserv = ManagerServiceImp.getMserv();
+    private static Gson gson = new Gson();
 
     public static Handler createManager = (ctx) ->
     {
         String body = ctx.body();
-        Gson gson = new Gson();
+
 
 
         try
 
         {
             Manager manager = gson.fromJson(body, Manager.class);
-            Manager newman = Driver.managerService.createManager(manager);
-            System.out.println(manager);
+            Manager newman = mserv.createManager(manager);
+//            System.out.println(manager);
             if(manager != null) {
 //               Manager returned = App.managerService.createManager(manager);
 
@@ -45,11 +46,11 @@ public class ManagerController
 
     public static Handler getManagerById = (ctx) -> {
         String mid = ctx.pathParam("mid");
-        Gson gson = new Gson();
+
 
         try
         {
-            Manager manager = Driver.managerService.getManagerById(Integer.parseInt(mid));
+            Manager manager = mserv.getManagerById(Integer.parseInt(mid));
             String json = gson.toJson(manager);
             ctx.result(json);
             ctx.status(200);
@@ -66,19 +67,19 @@ public class ManagerController
         String email = ctx.queryParam("email");
 
 
-        List<Manager> managers = new ArrayList<Manager>();
+        List<Manager> managers = new ArrayList<>();
 
         if(name != null)
         {
-            managers.add(Driver.managerService.getManagerByName(name));
+            managers.add(mserv.getManagerByName(name));
         }
         else if (email != null)
         {
-            managers.add(Driver.managerService.getManagerByEmail(email));
+            managers.add(mserv.getManagerByEmail(email));
         }
         else
         {
-            managers = Driver.managerService.getAllManagers();
+            managers = mserv.getAllManagers();
         }
         Gson gson = new Gson();
 
@@ -90,10 +91,10 @@ public class ManagerController
 
     public static Handler updateManager = (ctx) -> {
         String body = ctx.body();
-        Gson gson = new Gson();
+
 
         Manager manager = gson.fromJson(body, Manager.class);
-        Manager result = Driver.managerService.updateManager(manager);
+        Manager result = mserv.updateManager(manager);
 
         ctx.result(gson.toJson(result));
         ctx.status(202);
@@ -102,12 +103,12 @@ public class ManagerController
 
     public static Handler deleteManager = (ctx) -> {
         String body = ctx.body();
-        Gson gson = new Gson();
+
 
         Manager manager = gson.fromJson(body, Manager.class);
         try
         {
-            boolean result = Driver.managerService.deleteManager(manager);
+            boolean result = mserv.deleteManager(manager);
 
             if(result)
                 ctx.status(200);

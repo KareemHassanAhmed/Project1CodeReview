@@ -63,7 +63,7 @@ public class EmployeeController
         String manager = ctx.queryParam("manager");
         String sort = ctx.queryParam("sort_employee");
 
-        List<Employee> employees = new ArrayList<Employee>();
+        List<Employee> employees = new ArrayList<>();
 
         if(name != null)
         {
@@ -95,12 +95,7 @@ public class EmployeeController
         ctx.status(200);
     };
 
-    public static Handler test = (ctx) -> {
-
-
-        ctx.result("this is a test");
-
-    };
+    public static Handler test = (ctx) -> ctx.result("this is a test");
     public static Handler updateEmployee = (ctx) -> {
         String body = ctx.body();
         Employee employee = gson.fromJson(body, Employee.class);
@@ -118,7 +113,7 @@ public class EmployeeController
         {
             boolean result = eserv.deleteEmployee(employee);
 
-            if(result == true)
+            if(result)
                 ctx.status(200);
             else
                 ctx.status(404);

@@ -51,7 +51,7 @@ public class ReimbursementServiceImp implements ReimbursementService {
     public List<Reimbursement> getReimbursementByEmployee(int eid)
     {
         List<Reimbursement> filterMe = rserv.getAllReimbursement();
-        List<Reimbursement> result = new ArrayList<Reimbursement>();
+        List<Reimbursement> result = new ArrayList<>();
         for (Reimbursement r:filterMe)
         {
             if(r.getEid() == eid)
@@ -64,8 +64,9 @@ public class ReimbursementServiceImp implements ReimbursementService {
     @Override
     public List<Reimbursement> getReimbursementByCategory(int cid)
     {
-        List<Reimbursement> filterMe = rserv.getAllReimbursement();
-        List<Reimbursement> result = new ArrayList<Reimbursement>();
+        List<Reimbursement> filterMe;
+        filterMe = rserv.getAllReimbursement();
+        List<Reimbursement> result = new ArrayList<>();
         for (Reimbursement r:filterMe)
         {
             if(r.getCid() == cid)
@@ -79,7 +80,7 @@ public class ReimbursementServiceImp implements ReimbursementService {
     public List<Reimbursement> getReimbursementByManager(int mgid)
     {
         List<Reimbursement> filterMe = rserv.getAllReimbursement();
-        List<Reimbursement> result = new ArrayList<Reimbursement>();
+        List<Reimbursement> result = new ArrayList<>();
         List<Employee> employees = employeeService.getEmployeeByManager(mgid);
 
         for (Employee e:employees)
@@ -98,7 +99,7 @@ public class ReimbursementServiceImp implements ReimbursementService {
     public List<Reimbursement> getReimbursementsApproved()
     {
         List<Reimbursement> filterMe = rserv.getAllReimbursement();
-        List<Reimbursement> result = new ArrayList<Reimbursement>();
+        List<Reimbursement> result = new ArrayList<>();
         for (Reimbursement r:filterMe)
         {
             if(r.getStatus() >0)
@@ -112,7 +113,7 @@ public class ReimbursementServiceImp implements ReimbursementService {
     public List<Reimbursement> getReimbursementsDenied()
     {
         List<Reimbursement> filterMe = rserv.getAllReimbursement();
-        List<Reimbursement> result = new ArrayList<Reimbursement>();
+        List<Reimbursement> result = new ArrayList<>();
         for (Reimbursement r:filterMe)
         {
             if(r.getStatus() <1)
@@ -126,7 +127,7 @@ public class ReimbursementServiceImp implements ReimbursementService {
     public List<Reimbursement> getReimbursementsAmountAscending()
     {
         List<Reimbursement> filterMe = rserv.getAllReimbursement();
-        Collections.sort(filterMe, Comparator.comparingDouble(Reimbursement::getAmount));
+        filterMe.sort(Comparator.comparingDouble(Reimbursement::getAmount));
         return filterMe;
     }
 
@@ -134,7 +135,7 @@ public class ReimbursementServiceImp implements ReimbursementService {
     public List<Reimbursement> getReimbursementsAmountDescending()
     {
         List<Reimbursement> filterMe = rserv.getAllReimbursement();
-        Collections.sort(filterMe, Comparator.comparingDouble(Reimbursement::getAmount).reversed());
+        filterMe.sort(Comparator.comparingDouble(Reimbursement::getAmount).reversed());
         return filterMe;
     }
 
@@ -142,7 +143,7 @@ public class ReimbursementServiceImp implements ReimbursementService {
     public List<Reimbursement> getReimbursementsStatusDateAscending()
     {
         List<Reimbursement> filterMe = rserv.getAllReimbursement();
-        Collections.sort(filterMe, (r1, r2)-> String.CASE_INSENSITIVE_ORDER.compare(r1.getStatus_date().toString(),r2.getStatus_date().toString()));
+        filterMe.sort((r1, r2) -> String.CASE_INSENSITIVE_ORDER.compare(r1.getStatus_date().toString(), r2.getStatus_date().toString()));
         Collections.reverse(filterMe);
         return filterMe;
     }
@@ -151,7 +152,7 @@ public class ReimbursementServiceImp implements ReimbursementService {
     public List<Reimbursement> getReimbursementsStatusDateDescending()
     {
         List<Reimbursement> filterMe = rserv.getAllReimbursement();
-        Collections.sort(filterMe, (r1, r2)-> String.CASE_INSENSITIVE_ORDER.compare(r1.getStatus_date().toString(),r2.getStatus_date().toString()));
+        filterMe.sort((r1, r2) -> String.CASE_INSENSITIVE_ORDER.compare(r1.getStatus_date().toString(), r2.getStatus_date().toString()));
         return filterMe;
     }
 
@@ -159,7 +160,7 @@ public class ReimbursementServiceImp implements ReimbursementService {
     public List<Reimbursement> getReimbursementsSubmitDateAscending()
     {
         List<Reimbursement> filterMe = rserv.getAllReimbursement();
-        Collections.sort(filterMe, (r1, r2)-> String.CASE_INSENSITIVE_ORDER.compare(r1.getSubmit_date().toString(),r2.getSubmit_date().toString()));
+        filterMe.sort((r1, r2) -> String.CASE_INSENSITIVE_ORDER.compare(r1.getSubmit_date().toString(), r2.getSubmit_date().toString()));
         Collections.reverse(filterMe);
         return filterMe;
     }
@@ -168,7 +169,7 @@ public class ReimbursementServiceImp implements ReimbursementService {
     public List<Reimbursement> getReimbursementsSubmitDateDescending()
     {
         List<Reimbursement> filterMe = rserv.getAllReimbursement();
-        Collections.sort(filterMe, (r1, r2)-> String.CASE_INSENSITIVE_ORDER.compare(r1.getSubmit_date().toString(),r2.getSubmit_date().toString()));
+        filterMe.sort((r1, r2) -> String.CASE_INSENSITIVE_ORDER.compare(r1.getSubmit_date().toString(), r2.getSubmit_date().toString()));
         return filterMe;
     }
 

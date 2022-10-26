@@ -25,7 +25,7 @@ public class EmployeeServiceImp implements EmployeeService {
             eserv = new EmployeeServiceImp() ;
 
         return eserv;
-    };
+    }
 
     @Override
     public Employee createEmployee(Employee employee) {
@@ -66,7 +66,7 @@ public class EmployeeServiceImp implements EmployeeService {
     public List<Employee> getEmployeeByManager(int mgid)
     {
         List<Employee> employees = edao.getAllEmployees();
-        List<Employee> managedByMgid = new ArrayList<Employee>();
+        List<Employee> managedByMgid = new ArrayList<>();
 
         for(Employee e : employees)
         {
@@ -85,7 +85,7 @@ public class EmployeeServiceImp implements EmployeeService {
     @Override
     public List<Employee> getAllEmployeesNameAtoZ() {
         List<Employee> employees = edao.getAllEmployees();
-        Collections.sort(employees,(e1, e2)-> String.CASE_INSENSITIVE_ORDER.compare(e1.getName(), e2.getName()));
+        employees.sort((e1, e2) -> String.CASE_INSENSITIVE_ORDER.compare(e1.getName(), e2.getName()));
         return employees;
     }
 
@@ -93,7 +93,7 @@ public class EmployeeServiceImp implements EmployeeService {
     public List<Employee> getAllEmployeesNameZtoA() {
         List<Employee> employees = edao.getAllEmployees();
 
-        Collections.sort(employees,(e1, e2)-> String.CASE_INSENSITIVE_ORDER.compare(e1.getName(), e2.getName()));
+        employees.sort((e1, e2) -> String.CASE_INSENSITIVE_ORDER.compare(e1.getName(), e2.getName()));
         Collections.reverse(employees);
         return employees;
     }

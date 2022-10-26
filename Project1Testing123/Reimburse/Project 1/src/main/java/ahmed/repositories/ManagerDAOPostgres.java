@@ -85,7 +85,7 @@ public class ManagerDAOPostgres implements ManagerDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();
-            List<Manager> managers = new ArrayList<Manager>();
+            List<Manager> managers = new ArrayList<>();
             Manager manager;
             while (rs.next()){
                 manager = new Manager();
@@ -141,12 +141,7 @@ public class ManagerDAOPostgres implements ManagerDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, manager.getMgid());
 
-            if(ps.executeUpdate() > 0)
-            {
-                return true;
-            }
-
-            return false;
+            return ps.executeUpdate() > 0;
 
         }catch (SQLException e)
         {

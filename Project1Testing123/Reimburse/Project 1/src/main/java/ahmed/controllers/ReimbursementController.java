@@ -64,7 +64,7 @@ public class ReimbursementController {
         String sortStatusDate = ctx.queryParam("sort_status_date");
         String sortSubmitDate = ctx.queryParam("sort_submit_date");
 
-        List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+        List<Reimbursement> reimbursements = new ArrayList<>();
         if (employee != null)
         {
             reimbursements = rserv.getReimbursementByEmployee(Integer.parseInt(employee));

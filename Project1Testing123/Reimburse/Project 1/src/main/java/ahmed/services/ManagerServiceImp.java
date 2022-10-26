@@ -3,31 +3,29 @@ package ahmed.services;
 import ahmed.repositories.ManagerDAO;
 import ahmed.entities.Manager;
 
+import javax.inject.Inject;
 import java.util.List;
 
 public class ManagerServiceImp implements ManagerService {
 
-//    @Inject
+    @Inject
 //    private ManagerDAO mdao;
 
     private static ManagerDAO mdao;
-    public ManagerServiceImp(ManagerDAO mdao) { this.mdao = mdao; }
+    public ManagerServiceImp(ManagerDAO mdao) { ManagerServiceImp.mdao = mdao; }
 
+    private static ManagerService mserv;
 
+    private ManagerServiceImp() {
+        super();
+    }
 
+    public static ManagerService getMserv() {
+        if (mserv == null)
+            mserv = new ManagerServiceImp();
 
-//    private static ManagerService mserv;
-//
-//    private ManagerServiceImp() {
-//        super();
-//    }
-//
-//    public static ManagerService getMserv() {
-//        if (mserv == null)
-//            mserv = new ManagerServiceImp();
-//
-//        return mserv;
-//    }
+        return mserv;
+    }
 
     @Override
     public Manager createManager(Manager manager) {
