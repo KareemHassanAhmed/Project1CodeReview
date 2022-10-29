@@ -26,7 +26,7 @@ public class ReimbursementDAOPostgres implements ReimbursementDAO {
     public Reimbursement createReimbursement(Reimbursement reimbursement)
     {
         try(Connection conn = ConnectionFactory.getConnection()){
-            String sql = "INSERT INTO project1_db.REIMBURSEMENT VALUES (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO REIMBURSEMENT VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, 0);
             ps.setDouble(2, reimbursement.getAmount());
@@ -57,7 +57,7 @@ public class ReimbursementDAOPostgres implements ReimbursementDAO {
     {
         try(Connection conn = ConnectionFactory.getConnection())
         {
-            String sql = "SELECT * FROM project1_db.REIMBURSEMENT WHERE rid = ?";
+            String sql = "SELECT * FROM REIMBURSEMENT WHERE rid = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, rid);
 
@@ -89,7 +89,7 @@ public class ReimbursementDAOPostgres implements ReimbursementDAO {
     {
         try(Connection conn = ConnectionFactory.getConnection())
         {
-            String sql = "SELECT * FROM project1_db.REIMBURSEMENT";
+            String sql = "SELECT * FROM REIMBURSEMENT";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();
@@ -154,7 +154,7 @@ public class ReimbursementDAOPostgres implements ReimbursementDAO {
     {
         try(Connection conn = ConnectionFactory.getConnection())
         {
-            String sql = "DELETE FROM project1_db.REIMBURSEMENT WHERE rid = ?";
+            String sql = "DELETE FROM REIMBURSEMENT WHERE rid = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, reimbursement.getRid());
 

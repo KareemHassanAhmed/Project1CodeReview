@@ -28,7 +28,7 @@ public class ManagerDAOPostgres implements ManagerDAO
     {
         System.out.println(manager);
         try(Connection conn = ConnectionFactory.getConnection()){
-            String sql = "insert into MANAGERS values(default,?,?,?,?)";
+            String sql = "insert into MANAGERs values(default,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
       //      ps.setInt(1, 0);
             ps.setString(1, manager.getEmail());
@@ -55,7 +55,7 @@ public class ManagerDAOPostgres implements ManagerDAO
     {
         try(Connection conn = ConnectionFactory.getConnection())
         {
-            String sql = "SELECT * FROM MANAGERS WHERE mgid = ?";
+            String sql = "SELECT * FROM MANAGERs WHERE mgid = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, mgid);
 
@@ -82,7 +82,7 @@ public class ManagerDAOPostgres implements ManagerDAO
     {
         try(Connection conn = ConnectionFactory.getConnection())
         {
-            String sql = "SELECT * FROM MANAGERS";
+            String sql = "SELECT * FROM MANAGERs";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();
@@ -112,7 +112,7 @@ public class ManagerDAOPostgres implements ManagerDAO
     {
         try(Connection conn = ConnectionFactory.getConnection())
         {
-            String sql = "UPDATE MANAGERS SET email=?,password=?,name=?,image_url=? WHERE mgid = ?";
+            String sql = "UPDATE MANAGERs SET email=?,password=?,name=?,image_url=? WHERE mgid = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ps.setString(1, manager.getEmail());
@@ -138,7 +138,7 @@ public class ManagerDAOPostgres implements ManagerDAO
     {
         try(Connection conn = ConnectionFactory.getConnection())
         {
-            String sql = "DELETE FROM MANAGERS WHERE mgid = ?";
+            String sql = "DELETE FROM MANAGERs WHERE mgid = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, manager.getMgid());
 

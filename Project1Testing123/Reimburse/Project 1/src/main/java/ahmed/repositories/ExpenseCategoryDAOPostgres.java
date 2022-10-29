@@ -24,7 +24,7 @@ public class ExpenseCategoryDAOPostgres implements ExpenseCategoryDAO {
     @Override
     public ExpenseCategory createExpenseCategory(ExpenseCategory expenseCategory) {
         try(Connection conn = ConnectionFactory.getConnection()){
-            String sql = "INSERT INTO project1_db.EXPENSE_CATEGORY VALUES (?,?,?)";
+            String sql = "INSERT INTO EXPENSE_CATEGORY VALUES (?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, 0);
             ps.setString(2, expenseCategory.getTitle());
@@ -49,7 +49,7 @@ public class ExpenseCategoryDAOPostgres implements ExpenseCategoryDAO {
     public ExpenseCategory getExpenseCategoryById(int cid) {
         try(Connection conn = ConnectionFactory.getConnection())
         {
-            String sql = "SELECT * FROM project1_db.EXPENSE_CATEGORY WHERE cid = ?";
+            String sql = "SELECT * FROM EXPENSE_CATEGORY WHERE cid = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, cid);
 
@@ -74,7 +74,7 @@ public class ExpenseCategoryDAOPostgres implements ExpenseCategoryDAO {
     public List<ExpenseCategory> getAllExpenseCategories() {
         try(Connection conn = ConnectionFactory.getConnection())
         {
-            String sql = "SELECT * FROM project1_db.EXPENSE_CATEGORY";
+            String sql = "SELECT * FROM EXPENSE_CATEGORY";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();

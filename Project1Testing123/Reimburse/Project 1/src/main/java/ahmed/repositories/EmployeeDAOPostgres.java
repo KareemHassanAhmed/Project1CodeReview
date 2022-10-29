@@ -26,7 +26,7 @@ public class EmployeeDAOPostgres implements EmployeeDAO
     @Override
     public Employee createEmployee(Employee employee) {
         try(Connection conn = ConnectionFactory.getConnection()){
-            String sql = "INSERT INTO project1_db.EMPLOYEE VALUES (?,?,?,?,?,?)";
+            String sql = "INSERT INTO EMPLOYEE VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, 0);
             ps.setString(2, employee.getEmail());
@@ -53,7 +53,7 @@ public class EmployeeDAOPostgres implements EmployeeDAO
     public Employee getEmployeeById(int eid) {
         try(Connection conn = ConnectionFactory.getConnection())
         {
-            String sql = "SELECT * FROM project1_db.EMPLOYEE WHERE eid = ?";
+            String sql = "SELECT * FROM EMPLOYEE WHERE eid = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, eid);
 
@@ -80,7 +80,7 @@ public class EmployeeDAOPostgres implements EmployeeDAO
     public List<Employee> getAllEmployees() {
         try(Connection conn = ConnectionFactory.getConnection())
         {
-            String sql = "SELECT * FROM project1_db.EMPLOYEE";
+            String sql = "SELECT * FROM EMPLOYEE";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();
